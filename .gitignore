@@ -91,3 +91,4 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 child-angular-app/.editorconfig
+*.psd
