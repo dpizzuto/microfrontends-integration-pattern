@@ -122,3 +122,7 @@ Don't get fooled by 'localhost': can be anything accesible from Bootstrap applic
 
 # Docker 
 //TODO
+
+
+# Acknowledgement
+Thanks to Chris Kitson for his great [work](https://github.com/chriskitson/micro-frontends-with-web-components) here about micro frontend which helped me a lot!
