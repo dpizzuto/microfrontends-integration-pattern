@@ -6,6 +6,10 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+# Build dir
+build/
+dist/
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
@@ -86,3 +90,4 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+child-angular-app/.editorconfig
