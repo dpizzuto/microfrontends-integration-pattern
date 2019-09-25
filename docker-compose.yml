@@ -1,0 +1,24 @@
+version: '3'
+services:
+  angular-app:
+    image: microfrontend/bootstrap-app
+    build:
+      context: ./bootstrap
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+  child-angular-app:
+    image: microfrontend/child-angular-app
+    build:
+      context: ./child-angular-app
+      dockerfile: Dockerfile
+    ports:
+      - "8081:80"
+  child-react-app:
+    image: microfrontend/child-react-app
+    build:
+      context: ./child-react-app
+      dockerfile: Dockerfile
+    ports:
+      - "8082:80"
+      
