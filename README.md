@@ -162,4 +162,4 @@ The option **--build** is needed the first time and then every time there are ch
 
 
 # Acknowledgements
-Thanks to Chris Kitson for his great [work](https://github.com/chriskitson/micro-frontends-with-web-components) here about micro frontend which helped me a lot!
+Thanks to Chris Kitson for his great [work](https://github.com/chriskitson/micro-frontends-with-web-components)  about micro frontend which helped me a lot!
