@@ -6,20 +6,20 @@ import PropTypes from 'prop-types';
 export class MyCustomReactComponent extends React.Component {
 
   static propTypes = {
-    name: PropTypes.string,
+    text: PropTypes.string,
     onHelloEvt: PropTypes.func
   }
 
   static defaultProps = {
-    name: "Dario"
+    text: "React text"
   }
 
   render() {
-    const { name, onHelloEvt } = this.props;
+    const { text, onHelloEvt } = this.props;
     return (
       <div className="MyCustomReactComponent">
-        <p>Hello <strong>{name}</strong> from your friendly React component.</p>
-        <button type="submit" className="btn btn-secondary" onClick={onHelloEvt}>Say hello</button>
+        <p>Text <strong>{text}</strong> from your friendly React component.</p>
+        <button type="submit" className="btn btn-secondary" onClick={onHelloEvt}>Send text</button>
       </div>
     )
   }

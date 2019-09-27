@@ -37,6 +37,7 @@
 
 <body onload="tellComponents()">
 
+  
   <div class="container">
     <div class="row">
       <div class="col">
@@ -47,26 +48,26 @@
     </div>
     <div class="row">
       <div class="col">
-          <div class="alert alert-info" role="alert">
-            <h4 class="alert-heading">What is your name?</h4>
+          <div class="alert alert-primary" role="alert">
+            <h4 class="alert-heading">Text to send</h4>
             <div class="form-group">
-              <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" id="yourName" aria-describedby="yourName" placeholder="Your name" value="Dario" />
-              <small id="emailHelp" class="form-text text-muted">Enter your name above then click the button below to tell the components.</small>
+              <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" id="yourText" aria-describedby="yourText" placeholder="text" value="Lorem ipsum" />
+              <small id="emailHelp" class="form-text text-muted">Enter you want to send to components.</small>
             </div>
-            <button type="submit" class="btn btn-primary" onclick="tellComponents()">Tell the components</button>
+            <button type="submit" class="btn btn-primary" onclick="tellComponents()">Broadcast components</button>
           </div>
       </div>
     </div>
     <div class="row">
       <div class="col">
         <div class="card">
-          <h5 class="card-header">Angular</h5>
+          <h5 class="card-header">Angular App</h5>
           <div class="card-body" id="ng-container"></div>
         </div>
       </div>
       <div class="col">
         <div class="card">
-          <h5 class="card-header">React</h5>
+          <h5 class="card-header">React App</h5>
           <div class="card-body" id="react-container"></div>
         </div>
       </div>
@@ -84,11 +85,11 @@
   <script>
     function tellComponents() {
 
-      const name = document.getElementById('yourName').value;
+      const text = document.getElementById('yourText').value;
 
       // Child React App Element
       const reactEl = document.createElement('react-el');
-      reactEl.setAttribute('name', name);
+      reactEl.setAttribute('text', text);
       reactEl.setAttribute('onHelloEvt', 'onHelloEvt');
       reactEl.addEventListener('onHelloEvt', (e) => helloEvent('React'));
       const reactElContainer =  document.getElementById('react-container')
@@ -99,22 +100,22 @@
 
       //Child Angular child element
       const ngEl = document.createElement('ng-el');
-      ngEl.setAttribute('name', name);
+      ngEl.setAttribute('text', text);
       ngEl.addEventListener('helloEvt', (e) => helloEvent('Angular'));
       const ngElContainer =  document.getElementById('ng-container')
       if (ngElContainer.children.length > 0) {
         ngElContainer.removeChild(ngElContainer.children[0]);
       }
       ngElContainer.appendChild(ngEl);
-      logMessage('You', `my name is ${name}`)
+      logMessage('You', `Text -> ${text}`)
     }
 
     function helloEvent(who) {
-      logMessage(who, 'hello');
+      logMessage(who, 'message');
     }
     function logMessage(source, msg) {
       const msgContainer = document.getElementById('messages');
-      msgContainer.innerHTML += `<p><strong>${source}</strong> said ${msg}`;
+      msgContainer.innerHTML += `<p><strong>${source}</strong> sent ${msg}`;
     }
   </script>
 

@@ -9,7 +9,7 @@ import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter } fro
 })
 export class MyCustomComponentComponent implements OnInit {
 
-  @Input() name: string;
+  @Input() text: string;
   @Output() helloEvt: EventEmitter<string> = new EventEmitter();
 
   constructor() { }

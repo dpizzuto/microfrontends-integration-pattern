@@ -147,10 +147,6 @@ npm install
 ```
 and building application through:
 ```
-npm build 
-```
-or 
-```
 npm run build 
 ```
 
