@@ -18,6 +18,7 @@ export class MyCustomReactComponent extends React.Component {
     const { text, onHelloEvt } = this.props;
     return (
       <div className="MyCustomReactComponent">
+        <p>MyCustomReactComponent works! Happy for React Micro frontend</p>
         <p>Text <strong>{text}</strong> from your friendly React component.</p>
         <button type="submit" className="btn btn-secondary" onClick={onHelloEvt}>Send text</button>
       </div>
