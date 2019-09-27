@@ -157,7 +157,7 @@ docker-compose up -d --build
 The option **--build** is needed the first time and then every time there are changes to applications.
 
 # Result
-<img src="./resources/bootstrap_sample.png" width="50%" display="block" />
+<img src="./resources/bootstrap_sample.png" width="80%" display="block" />
 
 
 # Acknowledgements
