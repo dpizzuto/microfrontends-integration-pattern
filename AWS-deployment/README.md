@@ -8,7 +8,7 @@ THe simplest way to deploy applications is to create three different buckets on 
 3. Bucket to contain _react child app_.
 
 Bootstrapp app will access two child app via bucket domain name of the other two.
-To keep things more secure, we'll setup CORD policy on child apps' buckets since all three public must have public access to resources. 
+To keep things more secure, we'll setup CORS policy on child apps' buckets since all three public must have public access to resources. 
 
 **Bootstrap Bucket**
 <img src="./resources/bucket-bootstrap.png" width="90%" display="block" />
@@ -22,6 +22,11 @@ To keep things more secure, we'll setup CORD policy on child apps' buckets since
 As we have seen above, you also need to setup CORS policy like the following
 
 <img src="./resources/cors-policy.png" width="90%" display="block" />
+
+### Launch stack
+It's possible to launch the stack via Launch stack button below. The next section explains what CloudFormation stacks contain. 
+
+[![Launch Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/new?stackName=micro-frontend-s3&templateURL=https://micro-frontend-cf-template.s3-eu-west-1.amazonaws.com/cf-s3-micro-frontend-template.template)
 
 ### CloudFormation
 I provided a simple CloudFormation nested stack to create the three buckets and CORS policy:
@@ -136,11 +141,6 @@ Outputs:
 For practical reasons, I put cf-s3-create-bootstrap-app-bucket.yaml and  cf-s3-create-child-app-bucket-cors in a different S3 bucket where I can reach them publicly. In fact the root stack contains URL to the nested stacks.
 
 If you're not familiar with CloudFormation you can see documentation [here](https://docs.aws.amazon.com/cloudformation/index.html). 
-
-### Lunch stack
-
-[![Launch Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/new?stackName=micro-frontend-s3&templateURL=https://micro-frontend-cf-template.s3-eu-west-1.amazonaws.com/cf-s3-micro-frontend-template.template)
-
 
 
 ### Deploy stack 

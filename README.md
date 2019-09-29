@@ -154,7 +154,7 @@ it's possible to run containers, pointing to root dir where docker-compose.yml i
 ```
 docker-compose up -d --build
 ```
-The option **--build** is needed the first time and then every time there are changes to applications.
+The option **--build** is needed the first time and then every time there are changes to applications' Docker side. Remember that this command **doesn't** build applications artifacts on your behalf, so if you make changes you must re-build your application via 'npm run build'. 
 
 # Result
 <img src="./resources/bootstrap_sample.png" width="80%" display="block" />
