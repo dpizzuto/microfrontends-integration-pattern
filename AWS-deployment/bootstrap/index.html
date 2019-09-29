@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+  <title>Micro-frontends using Web Components</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    .intro {
+      margin: 30px 0;
+    }
+    .repo {
+      margin: 30px 0;
+      text-align: center;
+      width: 100%;
+    }
+    .card-body {
+      width: 100%;
+      height: 350px;
+    }
+    .logo {
+      height: 200px;
+      margin-bottom: 20px;
+    }
+    .console {
+      margin-top: 20px;
+    }
+    .console h4 {
+      margin-bottom: 15px;
+      border-bottom: solid 1px #000000;
+      padding-bottom: 5px;
+    }
+    .console p {
+      font-size: 0.8em;
+    }
+  </style>
+</head>
+
+<body onload="tellComponents()">
+
+  
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <nav class="navbar navbar-light bg-light">
+          <span class="navbar-brand mb-0 h1">Microfrontends using Web Components and Integration pattern</span>
+        </nav>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+          <div class="alert alert-primary" role="alert">
+            <h4 class="alert-heading">Text to send</h4>
+            <div class="form-group">
+              <input type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control" id="yourText" aria-describedby="yourText" placeholder="text" value="Lorem ipsum" />
+              <small id="emailHelp" class="form-text text-muted">Enter you want to send to components.</small>
+            </div>
+            <button type="submit" class="btn btn-primary" onclick="tellComponents()">Broadcast components</button>
+          </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <h5 class="card-header">Angular App</h5>
+          <div class="card-body" id="ng-container"></div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <h5 class="card-header">React App</h5>
+          <div class="card-body" id="react-container"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row console">
+      <div class="col">
+          <div class="alert alert-dark" role="alert">
+            <h4 class="alert-heading">Console</h4>
+            <div id="messages"></div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function tellComponents() {
+
+      const text = document.getElementById('yourText').value;
+
+      // Child React App Element
+      const reactEl = document.createElement('react-el');
+      reactEl.setAttribute('text', text);
+      reactEl.setAttribute('onHelloEvt', 'onHelloEvt');
+      reactEl.addEventListener('onHelloEvt', (e) => helloEvent('React'));
+      const reactElContainer =  document.getElementById('react-container')
+      if (reactElContainer.children.length > 0) {
+        reactElContainer.removeChild(reactElContainer.children[0]);
+      }
+      reactElContainer.appendChild(reactEl);
+
+      //Child Angular child element
+      const ngEl = document.createElement('ng-el');
+      ngEl.setAttribute('text', text);
+      ngEl.addEventListener('helloEvt', (e) => helloEvent('Angular'));
+      const ngElContainer =  document.getElementById('ng-container')
+      if (ngElContainer.children.length > 0) {
+        ngElContainer.removeChild(ngElContainer.children[0]);
+      }
+      ngElContainer.appendChild(ngEl);
+      logMessage('You', `Text -> ${text}`)
+    }
+
+    function helloEvent(who) {
+      logMessage(who, 'message');
+    }
+    function logMessage(source, msg) {
+      const msgContainer = document.getElementById('messages');
+      msgContainer.innerHTML += `<p><strong>${source}</strong> sent ${msg}`;
+    }
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.9.1/zone.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.2.10/custom-elements-es5-adapter.js"></script>
+  <script src="http://micro-frontend-angular.s3-website-eu-west-1.amazonaws.com/main.js"></script>
+  <script src="http://micro-frontend-react.s3-website-eu-west-1.amazonaws.com/main.js"></script>
+</body>
+</html>

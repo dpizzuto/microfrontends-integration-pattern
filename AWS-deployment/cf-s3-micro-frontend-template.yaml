@@ -1,0 +1,42 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: AWS CloudFormation nested stack template
+Parameters:
+  BucketNameBootstrap:
+    Type: String
+    Description: Bucket name for bootstrap app
+  BucketNameAngular:
+    Type: String
+    Description: Bucket name for angular app
+  BucketNameReact:
+    Type: String
+    Description: Bucket name for react app
+
+Resources:
+  BootstrapBucketStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://micro-frontend-cf-template.s3-eu-west-1.amazonaws.com/cf-s3-create-bootstrap-app-bucket.yaml
+      TimeoutInMinutes: '60'
+      Parameters:
+        BucketNameBootstrap: !Ref BucketNameBootstrap
+
+  AngularAppBucketStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://micro-frontend-cf-template.s3-eu-west-1.amazonaws.com/cf-s3-create-child-app-bucket-cors.yaml
+      TimeoutInMinutes: '60'
+      Parameters:
+        BucketNameChildApp: !Ref BucketNameAngular
+        BootstrapBucketStackName: !GetAtt BootstrapBucketStack.Outputs.BootstrapStackName
+       
+  ReactAppBucketStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://micro-frontend-cf-template.s3-eu-west-1.amazonaws.com/cf-s3-create-child-app-bucket-cors.yaml
+      TimeoutInMinutes: '60'    
+      Parameters:
+        BucketNameChildApp: !Ref BucketNameReact
+        BootstrapBucketStackName: !GetAtt BootstrapBucketStack.Outputs.BootstrapStackName
+Outputs:
+  WebSiteBootstrap:
+    Value: !GetAtt BootstrapBucketStack.Outputs.BootstrapWebsiteURL  

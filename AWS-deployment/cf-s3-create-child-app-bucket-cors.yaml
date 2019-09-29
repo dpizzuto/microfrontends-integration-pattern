@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: AWS CloudFormation template to create bucket for website hosting
+Parameters:
+  BucketNameChildApp:
+    Type: String
+    Description: Bucket name for bootstrap app
+  BootstrapBucketStackName:
+    Type: String
+Resources:
+  ChildAppBucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: !Ref BucketNameChildApp
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: error.html
+      AccessControl: Private
+      CorsConfiguration:
+        CorsRules:
+        - AllowedHeaders:
+          - 'Authorization'
+          AllowedMethods:
+          - GET
+          AllowedOrigins:
+          - 'Fn::ImportValue': !Sub '${BootstrapBucketStackName}-BootstrapWebsiteURL'
+          MaxAge: '3600'
+Outputs:
+  AngularWebsiteURL:
+    Description: Child app domain URL
+    Value: !GetAtt 
+      - ChildAppBucket
+      - WebsiteURL

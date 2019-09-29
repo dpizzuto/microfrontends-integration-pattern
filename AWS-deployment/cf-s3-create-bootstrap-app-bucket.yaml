@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: AWS CloudFormation template to create bucket for website hosting
+Parameters:
+  BucketNameBootstrap:
+    Type: String
+    Description: Bucket name for bootstrap app
+Resources:
+  BootstrapBucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: !Ref BucketNameBootstrap
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: error.html
+Outputs:
+  BootstrapStackName:
+    Description: URL of the bucket bootstrap
+    Value: !Ref AWS::StackName
+    Export:
+      Name: !Ref AWS::StackName
+  BootstrapWebsiteURL:
+    Description: URL of the bucket bootstrap
+    Value: !GetAtt [BootstrapBucket, WebsiteURL]
+    Export:
+      Name: !Sub "${AWS::StackName}-BootstrapWebsiteURL"
