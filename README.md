@@ -159,6 +159,8 @@ The option **--build** is needed the first time and then every time there are ch
 # Result
 <img src="./resources/bootstrap_sample.png" width="80%" display="block" />
 
+# AWS Deployment
+In the specific [section](https://github.com/dpizzuto/microfrontends-integration-pattern/blob/master/AWS-deployment/README.md) there's an example of S3 app deploy. 
 
 # Acknowledgements
 Thanks to Chris Kitson for his great [work](https://github.com/chriskitson/micro-frontends-with-web-components)  about micro frontend which helped me a lot!
