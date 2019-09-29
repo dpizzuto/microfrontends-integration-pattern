@@ -137,7 +137,7 @@ For practical reasons, I put cf-s3-create-bootstrap-app-bucket.yaml and  cf-s3-c
 
 If you're not familiar with CloudFormation you can see documentation [here](https://docs.aws.amazon.com/cloudformation/index.html). 
 
-###Lunch stack
+### Lunch stack
 
 [![Launch Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/new?stackName=micro-frontend-s3&templateURL=https://micro-frontend-cf-template.s3-eu-west-1.amazonaws.com/cf-s3-micro-frontend-template.template)
 
